@@ -13,7 +13,7 @@
         'file_path': 'uploads/pdf/[UnixTime]_アップロードされたファイル名.pdf',
         'date': 'CCYY/MM/DD/hh/mm',
         'password': 'パスワード',
-        'image_path': 'uploads/images/[UnixTime]_画像名.[png|jpg|jpeg|gif]
+        'image_path': 'uploads/images/[UnixTime]_画像名.[png|jpg|jpeg|gif]' 又は ''
     ],
     ...
 }
