@@ -1,22 +1,24 @@
-<h1>New Report</h1>
-
+<div class="header">
+  <div class="header-logo">イード内日報アプリ　タブロイード  <span>一覧へ戻る</span></div>
+</div>
 <%= form_with url: reports_path do |f| %>
   <div class="field">
-    <label>PDFファイル</label>
-    <%= f.file_field :pdf_file %>
+    <h3 class="pdf">PDFファイル<span>※</span></h3>
+    <p class="drop">ここにファイルをドロップしてください。
+    <%= f.file_field :pdf_file, class: "choise" %>
   </div>
 
   <div class="field">
-    <label>パスワード</label>
-    <%= f.text_field :password %>
+    <h3 class="pa">パスワード<span>※</span></h3>
+    <%= f.text_field :password, class: "pass", maxlength: 100, placeholder: "Password" %>
   </div>
 
   <div class="field">
-    <label>画像ファイル</label>
-    <%= f.file_field :image_file %>
+    <h3>サムネイル画像</h3>
+    <p class="drop">ここにファイルをドロップしてください。</p>
+    <%= f.file_field :image_file, class: "choise"%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "ファイルをアップロードする" class: "upr"%>
   </div>
 <% end %>
-<%= link_to 'Back', root_path %>
