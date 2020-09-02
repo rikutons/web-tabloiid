@@ -1,3 +1,62 @@
 // Place all the styles related to the Reports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.header-logo {
+  padding: 10px;
+  background-color: black;
+  color: white;
+}
+
+
+
+.header-logo span {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #333333;
+  color: white;
+  background-color: #33ccff;
+  border-radius: 10px;
+  text-align: center;
+  float: right;
+  display: inline-block;
+}
+
+span {
+  color: red;
+}
+
+.drop {
+  padding: 30px;
+  margin-bottom: 10px;
+  border: 1px dotted #333333;
+  border-radius: 5px;
+  text-align: center;
+}
+
+div p {
+   display: inline-block;
+}
+
+.tagu , .pass {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #333333;
+  border-radius: 10px;
+
+}
+
+.pass {
+  text-align: center;
+}
+
+
+
+.upr {
+  padding: 10px;
+  margin: 30px;
+  border: 1px solid #333333;
+  color: white;
+  background-color: #33ccff;
+  border-radius: 10px;
+  text-align: center;
+}

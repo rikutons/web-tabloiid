@@ -1,5 +1,28 @@
-<h1>New Report</h1>
-
-<%= render 'form', report: @report %>
-
-<%= link_to 'Back', reports_path %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="stylesheet.css">
+    <meta charset="utf-8">
+    <title>タブロイード</title>
+  </head>
+  <body>
+  <div class="header">
+    <div class="header-logo">イード内日報アプリ　タブロイード  <span>一覧へ戻る</span></div>
+  </div>
+    <h3 class="pdf">PDFファイル<span>※</span></h3>
+    <p class="drop">ここにファイルをドロップしてください。
+<div>
+    <input class="choice" type="file" name="filename" />
+</div>
+    <h3 class="pa">パスワード<span>※</span></h3>
+    <input class="pass" type="password" name="passward" value="" maxlength="100" placeholder="Password">
+    <h3>タグ（カンマ区切りで入力）</h3>
+    <input class="tagu" type="text" name="first-name" maxlength="10" value="" placeholder="社長、ゲーム、SEO">
+    <h3>サムネイル画像</h3>
+    <p class="drop">ここにファイルをドロップしてください。</p>
+<div>
+  <input class="choice" type="file" name="filename" />
+</div>
+  <input class="upr" type="submit" value="ファイルをアップロードする">
+  </body>
+</html>
