@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :set_report, only: [:show, :edit, :update, :destroy]
+  before_action :set_report, only: [:show, :destroy]
 
   # GET /reports
   # GET /reports.json
@@ -17,10 +17,6 @@ class ReportsController < ApplicationController
     @report = Report.new
   end
 
-  # GET /reports/1/edit
-  def edit
-  end
-
   # POST /reports
   # POST /reports.json
   def create
@@ -32,20 +28,6 @@ class ReportsController < ApplicationController
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new }
-        format.json { render json: @report.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /reports/1
-  # PATCH/PUT /reports/1.json
-  def update
-    respond_to do |format|
-      if @report.update(report_params)
-        format.html { redirect_to @report, notice: 'Report was successfully updated.' }
-        format.json { render :show, status: :ok, location: @report }
-      else
-        format.html { render :edit }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end
