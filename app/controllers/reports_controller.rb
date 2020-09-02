@@ -20,20 +20,24 @@ class ReportsController < ApplicationController
   # POST /reports
   # POST /reports.json
   def create
-    puts "\n"
     date = Time.now()
     unix_time = date.to_i()
     file_name = params[:pdf_file].original_filename.chomp('.pdf')
-    file_path_name = "#{unix_time}_#{file_name}"
-    image_path_name = "#{unix_time}_#{params[:image_file].original_filename}"
+    file_path_name = "pdf/#{unix_time}_#{file_name}.pdf"
+    image_path_name = ""
+    File.binwrite("public/#{file_path_name}", params[:pdf_file].read)
+
+    unless params[:image_file].nil?
+      image_path_name = "images/#{unix_time}_#{params[:image_file].original_filename}"
+      File.binwrite("public/#{image_path_name}", params[:image_file].read)
+    end
+
     @report = Report.new(file_name: file_name,
-      file_path: "pdf/#{file_path_name}.pdf",
+      file_path: "#{file_path_name}",
       date: date,
       password: params[:password],
-      image_path: "images/#{image_path_name}")
+      image_path: "#{image_path_name}")
 
-    File.binwrite("public/pdf/#{file_path_name}.pdf", params[:pdf_file].read)
-    File.binwrite("public/images/#{image_path_name}", params[:image_file].read)
 
     respond_to do |format|
       if @report.save
