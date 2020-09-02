@@ -2,6 +2,7 @@
 
 <h1>Reports</h1>
 
+<%= will_paginate %>
 <table>
   <thead>
     <tr>
@@ -23,13 +24,13 @@
         <td><%= report.password %></td>
         <td><%= report.image_path %></td>
         <td><%= link_to 'Show', report %></td>
-        <td><%= link_to 'Edit', edit_report_path(report) %></td>
-        <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= will_paginate %>
 
 <br>
 
-<%= link_to 'New Report', new_report_path %>
+<%= link_to 'New Report', new_path %>
