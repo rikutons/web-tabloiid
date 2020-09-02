@@ -20,7 +20,20 @@ class ReportsController < ApplicationController
   # POST /reports
   # POST /reports.json
   def create
-    @report = Report.new(report_params)
+    puts "\n"
+    date = Time.now()
+    unix_time = date.to_i()
+    file_name = params[:pdf_file].original_filename.chomp('.pdf')
+    file_path_name = "#{unix_time}_#{file_name}"
+    image_path_name = "#{unix_time}_#{params[:image_file].original_filename}"
+    @report = Report.new(file_name: file_name,
+      file_path: "pdf/#{file_path_name}.pdf",
+      date: date,
+      password: params[:password],
+      image_path: "images/#{image_path_name}")
+
+    File.binwrite("public/pdf/#{file_path_name}.pdf", params[:pdf_file].read)
+    File.binwrite("public/images/#{image_path_name}", params[:image_file].read)
 
     respond_to do |format|
       if @report.save
@@ -47,10 +60,5 @@ class ReportsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_report
       @report = Report.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def report_params
-      params.require(:report).permit(:file_name, :file_path, :date, :password, :image_path)
     end
 end

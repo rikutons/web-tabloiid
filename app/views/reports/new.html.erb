@@ -1,5 +1,22 @@
 <h1>New Report</h1>
 
-<%= render 'form', report: @report %>
+<%= form_with url: reports_path do |f| %>
+  <div class="field">
+    <label>PDFファイル</label>
+    <%= f.file_field :pdf_file %>
+  </div>
 
+  <div class="field">
+    <label>パスワード</label>
+    <%= f.text_field :password %>
+  </div>
+
+  <div class="field">
+    <label>画像ファイル</label>
+    <%= f.file_field :image_file %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 <%= link_to 'Back', root_path %>
