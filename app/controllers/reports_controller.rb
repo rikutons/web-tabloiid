@@ -4,7 +4,7 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
+    @reports = Report.paginate(page: params[:page], per_page: 8)
   end
 
   # GET /reports/1
