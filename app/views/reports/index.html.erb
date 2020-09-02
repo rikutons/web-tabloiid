@@ -24,7 +24,7 @@
         <td><%= report.password %></td>
         <td><%= report.image_path %></td>
         <td><%= link_to 'Show', report %></td>
-        <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
