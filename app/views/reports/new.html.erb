@@ -5,11 +5,11 @@
     <% end %>
   </div>
 </div>
-<%= form_with url: reports_path do |f| %>
+<%= form_with url: reports_path, :html => { :id => 'upload' } do |f| %>
     <h3 class="pdf">PDFファイル<span>※</span></h3>
     <p class="drop">ここにファイルをドロップしてください。</p>
     <div>
-        <%= f.file_field :pdf_file, class: "choise" %>
+        <%= f.file_field :pdf_file, class: "choice", accept:"application/pdf"  %>
     </div>
 
     <h3 class="pa">パスワード<span>※</span></h3>
@@ -18,8 +18,37 @@
     <h3>サムネイル画像</h3>
     <p class="drop">ここにファイルをドロップしてください。</p>
     <div>
-        <%= f.file_field :image_file, class: "choise"%>
+        <%= f.file_field :image_file, class: "choice", accept: "image/png,image/jpeg,image/gif" %>
     </div>
 
-    <%= f.submit "ファイルをアップロードする" ,class: "upr"%>
+    <!--<%= f.submit "ファイルをアップロードする" ,class: "upr"%>-->
+    <button type="button" class="upr" onClick="checkUploadFileExt()">ファイルをアップロードする</button>
 <% end %>
+
+<script type="text/javascript">
+    function checkUploadFileExt() {
+    var filename = document.querySelectorAll('.choice')[0].value
+    var filename2 = document.querySelectorAll('.choice')[1].value
+
+    const isPdf = checkExt(filename, ['pdf'])
+    const isImg = checkExt(filename2, ['jpg','jpeg','png','gif'])
+
+    if (isPdf && isImg){
+      const form=document.getElementById('upload');
+      form.submit();
+    }
+    else{
+      alert("許可されていません");
+    }
+  }
+
+  function checkExt(filename, allowExt){
+    var pos = filename.lastIndexOf('.');
+    if (pos === -1) return '';
+    var ext = filename.slice(pos + 1);
+    if (allowExt.indexOf(ext) !== -1) {
+      return true;
+    }
+    return false;
+  }
+</script>
