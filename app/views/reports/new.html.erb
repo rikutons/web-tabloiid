@@ -7,18 +7,18 @@
 </div>
 <%= form_with url: reports_path do |f| %>
     <h3 class="pdf">PDFファイル<span>※</span></h3>
-    <p class="drop">ここにファイルをドロップしてください。</p>
+    <p class="drop" id="pdf-drop-zone">ここにファイルをドロップしてください。</p>
     <div>
-        <%= f.file_field :pdf_file, class: "choise" %>
+        <%= f.file_field :pdf_file, class: "choise", id:"pdf-file-input"%>
     </div>
 
     <h3 class="pa">パスワード<span>※</span></h3>
     <%= f.text_field :password, class: "pass", maxlength: 100, placeholder: "Password" %>
 
     <h3>サムネイル画像</h3>
-    <p class="drop">ここにファイルをドロップしてください。</p>
+    <p class="drop" id="image-drop-zone">ここにファイルをドロップしてください。</p>
     <div>
-        <%= f.file_field :image_file, class: "choise"%>
+        <%= f.file_field :image_file, class: "choise", id:"image-file-input"%>
     </div>
 
     <%= f.submit "ファイルをアップロードする" ,class: "upr"%>
