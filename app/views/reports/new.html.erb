@@ -1,25 +1,33 @@
-<div class="header">
-  <div class="header-logo">イード内日報アプリ　タブロイード
-    <%= link_to root_path do %>
-    <span>一覧へ戻る</span>
-    <% end %>
+<div class="container">
+  <div class="header">
+    <div class="header-logo">
+      イード内日報アプリ　タブロイード
+    </div>
+    <div class="header-return-button">
+      <%= link_to root_path do %>
+        <span>一覧へ戻る</span>
+      <% end %>
+    </div>
   </div>
+  <content>
+  <%= form_with url: reports_path do |f| %>
+      <div class="note"><span class="asterisk">※</span>は必須項目です。</div>
+      <h3 class="pdf">PDFファイル<span class="asterisk">※</span></h3>
+      <p class="drop">ここにファイルをドロップしてください。</p>
+      <div>
+          <%= f.file_field :pdf_file, class: "choise" %>
+      </div>
+
+      <h3 class="pa">パスワード<span class="asterisk">※</span></h3>
+      <%= f.text_field :password, class: "pass", maxlength: 100, placeholder: "Password" %>
+
+      <h3>サムネイル画像</h3>
+      <p class="drop">ここにファイルをドロップしてください。</p>
+      <div>
+          <%= f.file_field :image_file, class: "choise"%>
+      </div>
+
+      <%= f.submit "ファイルをアップロードする" ,class: "upr"%>
+  <% end %>
+  </content>
 </div>
-<%= form_with url: reports_path do |f| %>
-    <h3 class="pdf">PDFファイル<span>※</span></h3>
-    <p class="drop">ここにファイルをドロップしてください。</p>
-    <div>
-        <%= f.file_field :pdf_file, class: "choise" %>
-    </div>
-
-    <h3 class="pa">パスワード<span>※</span></h3>
-    <%= f.text_field :password, class: "pass", maxlength: 100, placeholder: "Password" %>
-
-    <h3>サムネイル画像</h3>
-    <p class="drop">ここにファイルをドロップしてください。</p>
-    <div>
-        <%= f.file_field :image_file, class: "choise"%>
-    </div>
-
-    <%= f.submit "ファイルをアップロードする" ,class: "upr"%>
-<% end %>
