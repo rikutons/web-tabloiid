@@ -10,24 +10,52 @@
     </div>
   </div>
   <content>
-  <%= form_with url: reports_path do |f| %>
-      <div class="note"><span class="asterisk">※</span>は必須項目です。</div>
-      <h3 class="pdf">PDFファイル<span class="asterisk">※</span></h3>
-      <p class="drop">ここにファイルをドロップしてください。</p>
+  <%= form_with url: reports_path, :html => { :id => 'upload' } do |f| %>
+      <h3 class="pdf">PDFファイル<span>※</span></h3>
+      <p class="drop" id="pdf-drop-zone">ここにファイルをドロップしてください。</p>
       <div>
-          <%= f.file_field :pdf_file, class: "choise" %>
+          <%= f.file_field :pdf_file, class: "choice", accept:"application/pdf", id:"pdf-file-input"  %>
       </div>
 
       <h3 class="pa">パスワード<span class="asterisk">※</span></h3>
       <%= f.text_field :password, class: "pass", maxlength: 100, placeholder: "Password" %>
 
-      <h3>サムネイル画像</h3>
-      <p class="drop">ここにファイルをドロップしてください。</p>
-      <div>
-          <%= f.file_field :image_file, class: "choise"%>
-      </div>
-
-      <%= f.submit "ファイルをアップロードする" ,class: "upr"%>
+    <h3>サムネイル画像</h3>
+    <p class="drop" id="image-drop-zone">ここにファイルをドロップしてください。</p>
+    <div>
+        <%= f.file_field :image_file, class: "choice", accept: "image/png,image/jpeg,image/gif", id:"image-file-input" %>
+    </div>
+      
+    <button type="button" class="upr" onClick="checkUploadFileExt()">ファイルをアップロードする</button>
   <% end %>
   </content>
 </div>
+<script type="text/javascript">
+    function checkUploadFileExt() {
+    var filename = document.querySelectorAll('.choice')[0].value
+    var filename2 = document.querySelectorAll('.choice')[1].value
+
+    const isPdf = checkExt(filename, ['pdf'])
+    const isImg = checkExt(filename2, ['jpg','jpeg','png','gif'])
+
+    if (isPdf && isImg){
+      const form=document.getElementById('upload');
+      form.submit();
+    }
+    else{
+      alert("許可されていません");
+    }
+  }
+
+  function checkExt(filename, allowExt){
+    var pos = filename.lastIndexOf('.');
+    if (pos === -1) return '';
+    var ext = filename.slice(pos + 1);
+    if (allowExt.indexOf(ext) !== -1) {
+      return true;
+    }
+    return false;
+  }
+</script>
+
+<%= javascript_pack_tag 'user/new_application', 'data-turbolinks-track': 'reload' %>
