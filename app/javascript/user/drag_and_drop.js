@@ -21,6 +21,8 @@ function startAcceptFiles(params) {
         this.style.background = '#ffffff'; //背景色を白に戻す
         var files = e.dataTransfer.files; //ドロップしたファイルを取得
         if (files.length > 1) return alert('アップロードできるファイルは1つだけです。');
+        this.style.background = '#c4b3d4';
+        pdfDropZone.innerText = 'アップロード済み'
         pdfFileInput.files = files; //inputのvalueをドラッグしたファイルに置き換える。
     }, false);
 
@@ -46,6 +48,8 @@ function startAcceptFiles(params) {
         this.style.background = '#ffffff'; //背景色を白に戻す
         var files = e.dataTransfer.files; //ドロップしたファイルを取得
         if (files.length > 1) return alert('アップロードできるファイルは1つだけです。');
+        this.style.background = '#c4b3d4';
+        pdfDropZone.innerText = 'アップロード済み'
         imageFileInput.files = files; //inputのvalueをドラッグしたファイルに置き換える。
     }, false);
 }
