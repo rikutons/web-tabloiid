@@ -3,15 +3,13 @@
     <div class="header-logo">
       イード内日報アプリ　タブロイード
     </div>
-    <div class="header-return-button">
-      <%= link_to root_path do %>
-        <span>一覧へ戻る</span>
-      <% end %>
+    <div class="header-return-button button">
+      <%= link_to "一覧へ戻る", root_path %>
     </div>
   </div>
   <content>
   <%= form_with url: reports_path, :html => { :id => 'upload' } do |f| %>
-      <h3 class="pdf">PDFファイル<span>※</span></h3>
+      <h3 class="pdf">PDFファイル<span class="asterisk">※</span></h3>
       <p class="drop" id="pdf-drop-zone">ここにファイルをドロップしてください。</p>
       <div>
           <%= f.file_field :pdf_file, class: "choice", accept:"application/pdf", id:"pdf-file-input"  %>
@@ -26,7 +24,7 @@
         <%= f.file_field :image_file, class: "choice", accept: "image/png,image/jpeg,image/gif", id:"image-file-input" %>
     </div>
       
-    <button type="button" class="upr" onClick="checkUploadFileExt()">ファイルをアップロードする</button>
+    <button type="button" class="button" onClick="checkUploadFileExt()">ファイルをアップロードする</button>
   <% end %>
   </content>
 </div>

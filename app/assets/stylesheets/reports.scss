@@ -86,14 +86,16 @@ div p {
   text-align: center;
 }
 
-
-
-.upr {
+.button {
   padding: 10px;
-  margin: 30px;
-  border: 1px solid #333333;
   color: white;
   background-color: #33ccff;
   border-radius: 10px;
+  border: 0px;
+  font-weight: bold;
   text-align: center;
+  & > a {
+      text-decoration: none;
+      color: white;
+  }
 }
