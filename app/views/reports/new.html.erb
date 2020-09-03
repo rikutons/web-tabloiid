@@ -1,19 +1,22 @@
-<div class="header">
-  <div class="header-logo">イード内日報アプリ　タブロイード
-    <%= link_to root_path do %>
-    <span>一覧へ戻る</span>
-    <% end %>
-  </div>
-</div>
-<%= form_with url: reports_path, :html => { :id => 'upload' } do |f| %>
-    <h3 class="pdf">PDFファイル<span>※</span></h3>
-    <p class="drop" id="pdf-drop-zone">ここにファイルをドロップしてください。</p>
-    <div>
-        <%= f.file_field :pdf_file, class: "choice", accept:"application/pdf", id:"pdf-file-input"  %>
+<div class="container">
+  <div class="header">
+    <div class="header-logo">
+      イード内日報アプリ　タブロイード
     </div>
+    <div class="header-return-button button">
+      <%= link_to "一覧へ戻る", root_path %>
+    </div>
+  </div>
+  <content>
+  <%= form_with url: reports_path, :html => { :id => 'upload' } do |f| %>
+      <h3 class="pdf">PDFファイル<span class="asterisk">※</span></h3>
+      <p class="drop" id="pdf-drop-zone">ここにファイルをドロップしてください。</p>
+      <div>
+          <%= f.file_field :pdf_file, class: "choice", accept:"application/pdf", id:"pdf-file-input"  %>
+      </div>
 
-    <h3 class="pa">パスワード<span>※</span></h3>
-    <%= f.password_field :password, class: "pass", maxlength: 100, placeholder: "Password" %>
+      <h3 class="pa">パスワード<span class="asterisk">※</span></h3>
+      <%= f.password_field :password, class: "pass", maxlength: 100, placeholder: "Password" %>
 
     <h3>サムネイル画像</h3>
     <p class="drop" id="image-drop-zone">ここにファイルをドロップしてください。</p>
@@ -21,9 +24,10 @@
         <%= f.file_field :image_file, class: "choice", accept: "image/png,image/jpeg,image/gif", id:"image-file-input" %>
     </div>
       
-    <button type="button" class="upr" onClick="checkUploadFileExt()">ファイルをアップロードする</button>
-<% end %>
-
+    <button type="button" class="button" onClick="checkUploadFileExt()">ファイルをアップロードする</button>
+  <% end %>
+  </content>
+</div>
 <script type="text/javascript">
     function checkUploadFileExt() {
     var filename = document.querySelectorAll('.choice')[0].value
@@ -53,4 +57,3 @@
 </script>
 
 <%= javascript_pack_tag 'user/new_application', 'data-turbolinks-track': 'reload' %>
-
