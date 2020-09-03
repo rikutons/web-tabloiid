@@ -1,8 +1,25 @@
+<div id="index">
 <p id="notice"><%= notice %></p>
 
+<div class="header">
+    <div class="header-logo">イード内日報アプリ　タブロイード  <span>一覧へ戻る</span></div>
+</div>
+
+<div class="contents">
 <h1>Reports</h1>
 
 <%= will_paginate %>
+<div class="flex-container">
+<div class="flex-item">
+
+<% @reports.each do |report| %>
+
+  <figure><img src="<%= report.image_path %>" alt="タイトル"></figure>
+  <h4><%= report.file_name %></h4>
+  <p></p>
+  <% end %>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -34,3 +51,5 @@
 <br>
 
 <%= link_to 'New Report', new_path %>
+
+</div>
