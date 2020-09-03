@@ -7,21 +7,20 @@
 </div>
 <%= form_with url: reports_path, :html => { :id => 'upload' } do |f| %>
     <h3 class="pdf">PDFファイル<span>※</span></h3>
-    <p class="drop">ここにファイルをドロップしてください。</p>
+    <p class="drop" id="pdf-drop-zone">ここにファイルをドロップしてください。</p>
     <div>
-        <%= f.file_field :pdf_file, class: "choice", accept:"application/pdf"  %>
+        <%= f.file_field :pdf_file, class: "choice", accept:"application/pdf", id:"pdf-file-input"  %>
     </div>
 
     <h3 class="pa">パスワード<span>※</span></h3>
     <%= f.text_field :password, class: "pass", maxlength: 100, placeholder: "Password" %>
 
     <h3>サムネイル画像</h3>
-    <p class="drop">ここにファイルをドロップしてください。</p>
+    <p class="drop" id="image-drop-zone">ここにファイルをドロップしてください。</p>
     <div>
-        <%= f.file_field :image_file, class: "choice", accept: "image/png,image/jpeg,image/gif" %>
+        <%= f.file_field :image_file, class: "choice", accept: "image/png,image/jpeg,image/gif", id:"image-file-input" %>
     </div>
-
-    <!--<%= f.submit "ファイルをアップロードする" ,class: "upr"%>-->
+      
     <button type="button" class="upr" onClick="checkUploadFileExt()">ファイルをアップロードする</button>
 <% end %>
 
@@ -52,3 +51,6 @@
     return false;
   }
 </script>
+
+<%= javascript_pack_tag 'user/new_application', 'data-turbolinks-track': 'reload' %>
+

@@ -1,0 +1,1 @@
+require('user/drag_and_drop')
