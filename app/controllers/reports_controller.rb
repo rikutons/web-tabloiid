@@ -18,12 +18,12 @@ class ReportsController < ApplicationController
     date = Time.now()
     unix_time = date.to_i()
     file_name = params[:pdf_file].original_filename.chomp('.pdf')
-    file_path_name = "pdf/#{unix_time}_#{file_name}.pdf"
+    file_path_name = "pdf/#{unix_time}.pdf"
     image_path_name = ""
     File.binwrite("public/#{file_path_name}", params[:pdf_file].read)
 
     unless params[:image_file].nil?
-      image_path_name = "images/#{unix_time}_#{params[:image_file].original_filename}"
+      image_path_name = "images/#{unix_time}"
       File.binwrite("public/#{image_path_name}", params[:image_file].read)
     end
 
