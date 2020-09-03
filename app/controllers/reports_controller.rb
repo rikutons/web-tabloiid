@@ -1,15 +1,10 @@
 class ReportsController < ApplicationController
-  before_action :set_report, only: [:show, :destroy]
+  before_action :set_report, only: :destroy
 
   # GET /reports
   # GET /reports.json
   def index
     @reports = Report.paginate(page: params[:page], per_page: 8)
-  end
-
-  # GET /reports/1
-  # GET /reports/1.json
-  def show
   end
 
   # GET /reports/new
@@ -41,8 +36,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       if @report.save
-        format.html { redirect_to @report, notice: 'Report was successfully created.' }
-        format.json { render :show, status: :created, location: @report }
+        format.html { redirect_to root_path }
       else
         format.html { render :new }
         format.json { render json: @report.errors, status: :unprocessable_entity }
