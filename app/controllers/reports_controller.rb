@@ -47,6 +47,10 @@ class ReportsController < ApplicationController
   # DELETE /reports/1
   # DELETE /reports/1.json
   def destroy
+    File.delete("public/#{@report[:file_path]}")
+    unless @report[:image_path].empty?
+      File.delete("public/#{@report[:image_path]}")
+    end 
     @report.destroy
     respond_to do |format|
       format.html { redirect_to reports_url, notice: 'Report was successfully destroyed.' }
