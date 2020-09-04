@@ -36,7 +36,7 @@
     const isPdf = checkExt(filename, ['pdf'])
     const isImg = checkExt(filename2, ['jpg','jpeg','png','gif'])
 
-    if (isPdf && isImg){
+    if (isPdf){
       const form=document.getElementById('upload');
       form.submit();
     }

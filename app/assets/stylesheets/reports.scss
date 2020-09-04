@@ -102,12 +102,20 @@ div p {
 }
 
 #index {
+
+  h2 {
+    padding: 10px;
+  }
   .contents {
     margin-left:auto;    /* 左側マージンを自動的に空ける */
     margin-right:auto;   /* 右側マージンを自動的に空ける */
     text-align:left;     /* 中身を左側表示に戻す */
     width:75%;         /* 幅を決定する */
     background-color: rgb(219, 219, 219);
+    a {
+      text-decoration: none;
+      color: black;
+    }
   }
 
   h2 {
@@ -183,8 +191,16 @@ div p {
   }
 
   .right { text-align: right;}
-  
 
+  .missing-password {
+    display: none;
+    &--enable {
+      display: block;
+      font-weight: bold;
+      color: #ff8888;
+    }
+  }
+  
   ul.pagination {
       font-size: large;
       display: inline-block;
