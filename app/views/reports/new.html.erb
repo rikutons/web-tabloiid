@@ -11,48 +11,71 @@
   <%= form_with url: reports_path, :html => { :id => 'upload' } do |f| %>
       <h3 class="pdf">PDFファイル<span class="asterisk">※</span></h3>
       <p class="drop" id="pdf-drop-zone">ここにファイルをドロップしてください。</p>
-      <div>
+      <div id='pdf-up'>
           <%= f.file_field :pdf_file, class: "choice", accept:"application/pdf", id:"pdf-file-input"  %>
+          <div class="ext-error">
+                PDFファイルを選択してください
+          </div>
+          <div class="no-data">
+                PDFファイルは必須です
+          </div>
       </div>
 
-      <h3 class="pa">パスワード<span class="asterisk">※</span></h3>
+      <h3 class="pa">パスワード</h3>
       <%= f.password_field :password, class: "pass", maxlength: 100, placeholder: "Password" %>
 
     <h3>サムネイル画像</h3>
     <p class="drop" id="image-drop-zone">ここにファイルをドロップしてください。</p>
-    <div>
+    <div id='img-up'>
         <%= f.file_field :image_file, class: "choice", accept: "image/png,image/jpeg,image/gif", id:"image-file-input" %>
+        <div class="ext-error">
+              サムネイル画像の拡張子は「jpg」「jpeg」「png」「gif」のみ選択できます
+        </div>
     </div>
-      
+
     <button type="button" class="button" onClick="checkUploadFileExt()">ファイルをアップロードする</button>
   <% end %>
   </content>
 </div>
 <script type="text/javascript">
     function checkUploadFileExt() {
-    var filename = document.querySelectorAll('.choice')[0].value
-    var filename2 = document.querySelectorAll('.choice')[1].value
+    var filename = document.querySelectorAll('.choice')
 
-    const isPdf = checkExt(filename, ['pdf'])
-    const isImg = checkExt(filename2, ['jpg','jpeg','png','gif'])
+    const isPdf = checkExt(filename[0].value, ['pdf'])
+    const isImg = filename[1].value === '' || checkExt(filename[1].value, ['jpg','jpeg','png','gif'])
 
-    if (isPdf && isImg){
-      const form=document.getElementById('upload');
-      form.submit();
+    var pdfExtMsg = document.querySelector('#pdf-up > .ext-error').classList
+    var pdfNoDataMsg = document.querySelector('#pdf-up > .no-data').classList
+    var imgExtMsg = document.querySelector('#img-up > .ext-error').classList
+
+    pdfExtMsg.remove('is-view')
+    pdfNoDataMsg.remove('is-view')
+    imgExtMsg.remove('is-view')
+
+    if (isPdf === 'no-data') {
+      pdfNoDataMsg.add('is-view')
+    } else if(isPdf === false) {
+      pdfExtMsg.add('is-view')
     }
-    else{
-      alert("許可されていません");
+
+　　if (isImg === false) {
+      imgExtMsg.add('is-view')
+    }
+
+    if ((isPdf && isPdf !== 'no-data') && isImg) {
+      const form = document.getElementById('upload')
+      form.submit()
     }
   }
 
-  function checkExt(filename, allowExt){
-    var pos = filename.lastIndexOf('.');
-    if (pos === -1) return '';
-    var ext = filename.slice(pos + 1);
+  function checkExt(filename, allowExt) {
+    var pos = filename.lastIndexOf('.')
+    if (pos === -1) return 'no-data'
+    var ext = filename.slice(pos + 1)
     if (allowExt.indexOf(ext) !== -1) {
-      return true;
+      return true
     }
-    return false;
+    return false
   }
 </script>
 
