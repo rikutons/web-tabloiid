@@ -23,8 +23,11 @@
       <div class="right">
         <a style="cursor:pointer;"  onclick="obj=this.nextElementSibling.style; obj.display=(obj.display=='none')?'block':'none';">▼</a>
         <div class="secret" id="open" style="display:none;clear:both;">
-          <input class="pass" type="password" name="passward" value="" maxlength="100" placeholder="Password">
-          <div class="delete-button" ><%= button_to 'delete', report, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          <%= form_for report, html:{ remote: true, method: :delete} do |f| %>
+            <%= f.password_field :password, class: "pass", maxlength: 100, placeholder: "Password", size:"" %>
+            <%= f.hidden_field :id, value:report.password, id:"hidden_pass" %>
+            <button type="button" onClick="checkPassword(this)" class="delete-button">Delete</button>
+          <% end %>
         </div>
       </div>
     </div>
@@ -46,4 +49,18 @@
 
 <%= will_paginate %>
 
+<script type="text/javascript">
+  function checkPassword(button){
+    var correctPassword = button.previousElementSibling.value;
+    var inputPassword = button.previousElementSibling.previousElementSibling.value;
+
+    if (correctPassword === inputPassword){
+      const form = button.parentNode;
+      form.submit();
+    }
+    else{
+      alert("パスワードが間違っています");
+    }
+  }
+</script>
 </div>
