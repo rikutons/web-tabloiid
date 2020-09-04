@@ -2,9 +2,13 @@
 <p id="notice"><%= notice %></p>
 
 <div class="header">
-    <div class="header-logo">イード内日報アプリ　タブロイード  <span> <%= link_to '新規作成', new_path %></span></div>
+  <div class="header-logo">
+    イード内日報アプリ　タブロイード
+  </div>
+  <div class="header-return-button button">
+    <%= link_to "新規作成", new_path %>
+  </div>
 </div>
-
 <div class="contents">
 <h2>日報一覧</h2>
 
@@ -13,18 +17,18 @@
 
 <% @reports.each do |report| %>
   <div class="flex-item">
-  <div class="flex-item-img"><img src="<%= report.image_path %>" alt="No image" class=img></div>
-  <div class="flex-item-body">
-  <div class="flex-item-title"><%= report.file_name %></div>
-  <div class="flex-item-date"><%= report.date %></div>
-  <div onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';" class="right">
-  <a style="cursor:pointer;" >▼</a>
-  </div>
-  <div class="secret" id="open" style="display:none;clear:both;">
-  <input class="pass" type="password" name="passward" value="" maxlength="100" placeholder="Password">
-  <div class="delete-button" ><%= button_to 'delete', report, method: :delete, data: { confirm: 'Are you sure?' } %></div>
-  </div>
-  </div>
+    <div class="flex-item-img"><img src="<%= report.image_path %>" alt="No image" class=img></div>
+    <div class="flex-item-body">
+      <div class="flex-item-title"><%= report.file_name %></div>
+      <div class="flex-item-date"><%= report.date %></div>
+      <div class="right">
+        <a style="cursor:pointer;"  onclick="obj=this.nextElementSibling.style; obj.display=(obj.display=='none')?'block':'none';">▼</a>
+        <div class="secret" id="open" style="display:none;clear:both;">
+          <input class="pass" type="password" name="passward" value="" maxlength="100" placeholder="Password">
+          <div class="delete-button" ><%= button_to 'delete', report, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+        </div>
+      </div>
+    </div>
   </div>
 
 <% end %>
