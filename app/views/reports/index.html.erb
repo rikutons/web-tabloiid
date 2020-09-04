@@ -14,6 +14,7 @@
 <div class="flex-container">
 
 <% @reports.each do |report| %>
+  <%= link_to(report.file_path) do %>
   <div class="flex-item">
     <div class="flex-item-img"><img src="<%= report.image_path %>" alt="No image" class=img></div>
     <div class="flex-item-body">
@@ -29,6 +30,7 @@
     </div>
   </div>
 
+  <% end %>
 <% end %>
 </div>
 

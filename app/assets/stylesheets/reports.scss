@@ -112,6 +112,10 @@ div p {
     text-align:left;     /* 中身を左側表示に戻す */
     width:75%;         /* 幅を決定する */
     background-color: rgb(219, 219, 219);
+    a {
+      text-decoration: none;
+      color: black;
+    }
   }
 
   .flex-container {
