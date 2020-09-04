@@ -12,7 +12,8 @@
 <div class="contents">
 <h2>日報一覧</h2>
 
-<%= will_paginate %>
+
+
 <div class="flex-container">
 
 <% @reports.each do |report| %>
@@ -34,16 +35,8 @@
 <% end %>
 </div>
 
-<nav class="cp_navi">
-	<div class="cp_pagination">
-		<a class="cp_pagenum prev" href="#">prev</a>
-		<span aria-current="page" class="cp_pagenum current">1</span>
-		<a class="cp_pagenum" href="#">2</a>
-		<a class="cp_pagenum" href="#">3</a>
-		<a class="cp_pagenum next" href="#">next</a>
-	</div>
-</nav>
-
-<%= will_paginate %>
+  <div class="center">
+    <%= will_paginate %>
+  </div>
 
 </div>
