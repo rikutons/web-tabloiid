@@ -1,36 +1,61 @@
-<p id="notice"><%= notice %></p>
+<div id="index">
+<div class="header">
+  <div class="header-logo">
+    イード内日報アプリ　タブロイード
+  </div>
+  <div class="header-return-button button">
+    <%= link_to "新規作成", new_path %>
+  </div>
+</div>
+<div class="contents">
+<h2>日報一覧</h2>
 
-<h1>Reports</h1>
 
-<%= will_paginate %>
-<table>
-  <thead>
-    <tr>
-      <th>File name</th>
-      <th>File path</th>
-      <th>Date</th>
-      <th>Password</th>
-      <th>Image path</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @reports.each do |report| %>
-      <tr>
-        <td><%= report.file_name %></td>
-        <td><%= report.file_path %></td>
-        <td><%= report.date %></td>
-        <td><%= report.password %></td>
-        <td><%= report.image_path %></td>
-        <td><%= link_to 'Show', report.file_path %></td>
-        <td><%= button_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate %>
+<div class="flex-container">
 
-<br>
+<% @reports.each do |report| %>
+  <%= link_to(report.file_path) do %>
+  <div class="flex-item">
+    <div class="flex-item-img"><img src="<%= report.image_path %>" alt="No image" class=img></div>
+    <div class="flex-item-body">
+      <div class="flex-item-title"><%= report.file_name %></div>
+      <div class="flex-item-date"><%= report.date %></div>
+      <div class="right">
+        <a style="cursor:pointer;"  onclick="obj=this.nextElementSibling.style; obj.display=(obj.display=='none')?'block':'none';">▼</a>
+        <div class="secret" id="open" style="display:none;clear:both;">
+          <%= form_for report, html:{ remote: true, method: :delete} do |f| %>
+            <%= f.password_field :password, class: "pass", maxlength: 100, placeholder: "Password", size:"" %>
+            <%= f.hidden_field :id, value:report.password, id:"hidden_pass" %>
+            <button type="button" onClick="checkPassword(this)" class="delete-button">削除</button>
+            <div class="missing-password">パスワードが違います</div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<%= link_to 'New Report', new_path %>
+  <% end %>
+<% end %>
+</div>
+
+  <div class="center">
+    <%= will_paginate %>
+  </div>
+
+<script type="text/javascript">
+  function checkPassword(button){
+    var correctPassword = button.previousElementSibling.value;
+    var inputPassword = button.previousElementSibling.previousElementSibling.value;
+
+    if (correctPassword === inputPassword){
+      const form = button.parentNode;
+      form.submit();
+    }
+    else{
+      const missingPassword = button.nextElementSibling;
+      missingPassword.classList.add('missing-password--enable');
+    }
+  }
+</script>
+</div>
