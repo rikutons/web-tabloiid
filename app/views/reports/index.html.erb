@@ -26,7 +26,8 @@
           <%= form_for report, html:{ remote: true, method: :delete} do |f| %>
             <%= f.password_field :password, class: "pass", maxlength: 100, placeholder: "Password", size:"" %>
             <%= f.hidden_field :id, value:report.password, id:"hidden_pass" %>
-            <button type="button" onClick="checkPassword(this)" class="delete-button">Delete</button>
+            <button type="button" onClick="checkPassword(this)" class="delete-button">削除</button>
+            <div class="missing-password">パスワードが違います</div>
           <% end %>
         </div>
       </div>
@@ -59,7 +60,8 @@
       form.submit();
     }
     else{
-      alert("パスワードが間違っています");
+      const missingPassword = button.nextElementSibling;
+      missingPassword.classList.add('missing-password--enable');
     }
   }
 </script>

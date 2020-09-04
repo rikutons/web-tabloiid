@@ -188,7 +188,15 @@ div p {
 
   .right { text-align: right;}
 
-  
+  .missing-password {
+    display: none;
+    &--enable {
+      display: block;
+      font-weight: bold;
+      color: #ff8888;
+    }
+  }
+
   nav.cp_navi *, nav.cp_navi *:after, nav.cp_navi *:before {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
