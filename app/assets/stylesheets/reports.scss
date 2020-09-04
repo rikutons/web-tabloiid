@@ -128,16 +128,20 @@ div p {
 
   .flex-item-body {
     background: white;
+    padding:5px;
   }
 
  /*画像の設定*/
  .flex-item-img {
     background: rgb(31, 188, 240);	/*背景色*/
-    height: 180px;
-    //float: left;	/*左に回り込み*/
-    //width: 25%;		/*幅*/
- 
-  } 
+    height: auto;
+    width:100%;
+    
+  }
+  
+  .img {
+    width:100%;
+  }
 
   .secret {
     border: 1px solid #000;

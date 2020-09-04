@@ -13,7 +13,7 @@
 
 <% @reports.each do |report| %>
   <div class="flex-item">
-  <div class="flex-item-img"><img src="<%= report.image_path %>" alt="No image"></div>
+  <div class="flex-item-img"><img src="<%= report.image_path %>" alt="No image" class=img></div>
   <div class="flex-item-body">
   <div class="flex-item-title"><%= report.file_name %></div>
   <div class="flex-item-date"><%= report.date %></div>
