@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: :destroy
+  protect_from_forgery
 
   # GET /reports
   # GET /reports.json
