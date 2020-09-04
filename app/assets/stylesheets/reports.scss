@@ -40,6 +40,9 @@ content {
   left: 50%;
   transform: translateX(-50%);;
   width: 980px;
+  @media screen and (max-width:1000px) {
+    width: 70%;
+  }
   background-color: #ECECEC;
   flex-grow: 1;
   & > * > * {
@@ -59,11 +62,10 @@ content {
 
 .drop {
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
+  width: calc(100% - 30px);
+  box-sizing: border-box;
   padding: 30px;
-  margin: 0px;
+  margin: 15px;
   margin-bottom: 10px;
   border: 1px dotted #333333;
   border-radius: 5px;
@@ -76,6 +78,7 @@ div p {
 
 .tagu , .pass {
   padding: 10px;
+  margin: 15px;
   margin-bottom: 10px;
   border: 1px solid #333333;
   border-radius: 10px;
@@ -84,6 +87,9 @@ div p {
 
 .pass {
   text-align: center;
+  @media screen and (max-width:1000px) {
+    width: 50%;
+  }
 }
 
 .button {
