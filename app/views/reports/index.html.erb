@@ -21,8 +21,8 @@
     <div class="flex-item-body">
       <div class="flex-item-title"><%= report.file_name %></div>
       <div class="flex-item-date"><%= report.date %></div>
-      <div onclick="obj=this.children[1].style; obj.display=(obj.display=='none')?'block':'none';" class="right">
-        <a style="cursor:pointer;" >▼</a>
+      <div class="right">
+        <a style="cursor:pointer;"  onclick="obj=this.nextElementSibling.style; obj.display=(obj.display=='none')?'block':'none';">▼</a>
         <div class="secret" id="open" style="display:none;clear:both;">
           <input class="pass" type="password" name="passward" value="" maxlength="100" placeholder="Password">
           <div class="delete-button" ><%= button_to 'delete', report, method: :delete, data: { confirm: 'Are you sure?' } %></div>
