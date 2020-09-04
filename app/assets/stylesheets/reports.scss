@@ -220,10 +220,21 @@ div p {
       border-radius: 5px;
       margin: 0 4px;
   }
-
   ul.pagination li a:hover:not(.active) {background-color: rgb(31, 188, 240);}
 
     div.center {
       text-align: center;
   }
+}
+
+.ext-error {
+  display: none;
+}
+
+.no-data {
+  display: none;
+}
+
+.is-view {
+  display: initial;
 }
